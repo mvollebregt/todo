@@ -23,12 +23,20 @@ public class TaskServiceTest {
     @Autowired private TaskRepository taskDao;
 	
 	private Task task = new Task("description");
+	private Task anotherTask = new Task("other task description");
 	
 	@Test
-	public void list_shouldReturnListOfAllTasks() {
+	public void list_singleTask_shouldReturnListWithOneTask() {
 		taskDao.init(task);
-		List<Task> tasks = service.list();
-		assertEquals(Arrays.asList(task), tasks);
+		List<Task> result = service.list();
+		assertEquals(Arrays.asList(task), result);
+	}
+	
+	@Test
+	public void list_multipleTasks_shouldReturnListOfAllTasks() {
+		taskDao.init(task, anotherTask);
+		List<Task> result = service.list();
+		assertEquals(Arrays.asList(task, anotherTask), result);
 	}
 
 }

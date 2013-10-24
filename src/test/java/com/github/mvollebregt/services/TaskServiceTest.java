@@ -2,25 +2,27 @@ package com.github.mvollebregt.services;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
 
+import com.github.mvollebregt.data.TaskDao;
 import com.github.mvollebregt.model.Task;
 
 public class TaskServiceTest {
 	
 	private TaskService service;
 
-	private MockTaskDao taskDao;
+	private TaskDao taskDao;
+	
+	private Task task = new Task("description");
 	
 	@Test
 	public void list_shouldReturnListOfAllTasks() {
-		Task task = new Task("description");
 		taskDao.init(task);
 		List<Task> tasks = service.list();
-		assertEquals(tasks, new ArrayList<Task>(task));
+		assertEquals(tasks, Arrays.asList(task));
 	}
 
 }

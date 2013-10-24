@@ -1,15 +1,40 @@
 package com.github.mvollebregt.todo.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity 
+@Table(name="tasks")
 public class Task {
 	
+	private Long id;
 	private String description;
 	
 	public Task(String description) {
 		this.description = description;
 	}
 	
+	@Id
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment", strategy = "increment")
+	public Long getId() {
+	    return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public String getDescription() {
 		return description;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override
@@ -37,4 +62,11 @@ public class Task {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Task [description=" + description + "]";
+	}
+	
+	
 }

@@ -2,11 +2,37 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xmlns:context="http://www.springframework.org/schema/context"
+     xmlns:tx="http://www.springframework.org/schema/tx"
      xsi:schemaLocation="http://www.springframework.org/schema/beans
          http://www.springframework.org/schema/beans/spring-beans.xsd
          http://www.springframework.org/schema/context
-         http://www.springframework.org/schema/context/spring-context.xsd">
+         http://www.springframework.org/schema/context/spring-context.xsd
+         http://www.springframework.org/schema/tx 
+  		 http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
-   <context:component-scan base-package="com.github.mvollebregt.todo"/>
+  <context:component-scan base-package="com.github.mvollebregt.todo"/>
 
+  <bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
+    <property name="url" value="jdbc:hsqldb:mem:data"/>
+    <property name="username" value="sa"/>
+    <property name="password" value=""/>
+  </bean>
+  
+  <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+    <property name="sessionFactory" ref="mySessionFactory" />
+  </bean>
+
+  <tx:annotation-driven/>
+  
+  <bean id="mySessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+    <property name="dataSource" ref="myDataSource"/>
+    <property name="packagesToScan" value="com.github.mvollebregt.todo.model"/>
+    <property name="hibernateProperties">
+      <value>
+        hibernate.dialect=org.hibernate.dialect.HSQLDialect
+        hibernate.current_session_context_class=org.springframework.orm.hibernate4.SpringSessionContext
+      </value>
+    </property>
+  </bean>
 </beans>

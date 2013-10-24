@@ -1,23 +1,30 @@
 package com.github.mvollebregt.todo.repository;
 
-import java.util.Arrays;
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.github.mvollebregt.todo.model.Task;
 
 @Repository
 public class TaskRepository {
 	
-	private List<Task> tasks;
+	@Autowired
+	private SessionFactory sessionFactory;
 
+	@Transactional
 	public void init(Task... tasks) {
-		this.tasks = Arrays.asList(tasks);		
+		for (Task task: tasks) {
+			sessionFactory.getCurrentSession().persist(task);
+		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Task> list() {
-		return tasks;
+		return sessionFactory.getCurrentSession().createCriteria(Task.class).list();
 	}
 
 }

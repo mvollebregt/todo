@@ -1,0 +1,9 @@
+
+To use this project from eclipse:
+
+* type "mvn eclipse:eclipse" to generate eclipse project files
+
+* type "mvn -Declipse.workspace=<path-to-eclipse-workspace> eclipse:add-maven-repo" to let eclipse know where the maven repo is
+
+* open eclipse and import the project into your workspace
+

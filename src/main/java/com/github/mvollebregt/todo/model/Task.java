@@ -14,6 +14,8 @@ public class Task {
 	private Long id;
 	private String description;
 	
+	public Task() {}
+	
 	public Task(String description) {
 		this.description = description;
 	}

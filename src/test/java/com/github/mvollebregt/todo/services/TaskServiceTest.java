@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.github.mvollebregt.todo.model.Task;
 import com.github.mvollebregt.todo.repository.TaskRepository;
@@ -17,6 +18,7 @@ import com.github.mvollebregt.todo.services.TaskService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/beans.xml")
+@Transactional
 public class TaskServiceTest {
 	
 	@Autowired private TaskService service;

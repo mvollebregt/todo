@@ -1,5 +1,7 @@
 package com.github.mvollebregt.todo.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,7 +11,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity 
 @Table(name="tasks")
-public class Task {
+public class Task implements Serializable {
 	
 	private Long id;
 	private String description;

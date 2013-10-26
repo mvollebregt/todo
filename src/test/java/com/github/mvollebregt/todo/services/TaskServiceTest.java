@@ -17,7 +17,7 @@ import com.github.mvollebregt.todo.repository.TaskRepository;
 import com.github.mvollebregt.todo.services.TaskService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/beans.xml")
+@ContextConfiguration("/applicationContext.xml")
 @Transactional
 public class TaskServiceTest {
 	

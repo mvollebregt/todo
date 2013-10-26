@@ -13,6 +13,8 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name="tasks")
 public class Task implements Serializable {
 	
+	private static final long serialVersionUID = -564821250286504675L;
+
 	private Long id;
 	private String description;
 	

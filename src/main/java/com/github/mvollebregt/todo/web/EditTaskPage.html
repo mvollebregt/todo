@@ -14,17 +14,13 @@
 			</div>
 		</div>
 		<div id="bd">
-			<p>Here is a list of all things to do:</p>
+			<h1>View task</h1>
 			<table>
-				<tr wicket:id="list">
-					<td><a wicket:id="link"><span wicket:id="description">Make a todo list</span></a></td>
+				<tr>
+					<td>Description:</td>
+					<td wicket:id="description">Enter a description here</td>
 				</tr>
-				<wicket:remove>
-					<tr><td>Add more todo items</td></tr>
-					<tr><td>Finish this application</td></tr>
-				</wicket:remove>
 			</table>
-			<p wicket:id="navigator"><a href="#">prev</a> <a href="#">next</a> etc</p>
 		</div>
 		<div id="ft">
 		</div>

@@ -4,6 +4,7 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -17,13 +18,15 @@ public class EditTaskPage extends WebPage {
 	private TaskService taskService;
 
 	public EditTaskPage(final Task task) {
+		add(new FeedbackPanel("feedback"));
 		Form<Task> form = new Form<>("form");
 		add(form);
-		form.add(new TextField<Task>("description", new PropertyModel<Task>(task, "description")));
+		form.add(new TextField<Task>("description", new PropertyModel<Task>(task, "description")).setRequired(true));
 		form.add(new Button("submit") {
 			@Override
 			public void onSubmit() {
 				taskService.save(task);
+				info("Task was saved");
 			}
 		});
 	}

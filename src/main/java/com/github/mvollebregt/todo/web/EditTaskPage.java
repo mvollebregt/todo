@@ -18,6 +18,8 @@ public class EditTaskPage extends WebPage {
 	private TaskService taskService;
 
 	public EditTaskPage(final Task task) {
+		// TODO: make task detachable?
+		// TODO: use HibernateObjectModel?
 		add(new FeedbackPanel("feedback"));
 		Form<Task> form = new Form<>("form", new CompoundPropertyModel<Task>(task));
 		add(form);

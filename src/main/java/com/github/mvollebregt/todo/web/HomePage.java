@@ -39,6 +39,12 @@ public class HomePage extends WebPage {
 			}
 		};
 		
+		add(new Link<Task>("create-link") {
+			@Override
+			public void onClick() {
+				setResponsePage(new EditTaskPage(new Task()));
+			}
+		});
 		add(listView);
 		add(new PagingNavigator("navigator", listView));
     }

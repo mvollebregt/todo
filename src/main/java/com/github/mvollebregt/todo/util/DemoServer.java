@@ -3,7 +3,7 @@ package com.github.mvollebregt.todo.util;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
  
-public class LocalServer {
+public class DemoServer {
  
     public static void main(String[] args) throws Exception {
 

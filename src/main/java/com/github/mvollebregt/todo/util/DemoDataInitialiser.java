@@ -3,13 +3,11 @@ package com.github.mvollebregt.todo.util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.stereotype.Component;
 
 import com.github.mvollebregt.todo.model.Task;
 import com.github.mvollebregt.todo.repository.TaskRepository;
 
-@Component
-public class TestDataInitialiser implements ApplicationListener<ContextRefreshedEvent> {
+public class DemoDataInitialiser implements ApplicationListener<ContextRefreshedEvent> {
 	
 	@Autowired private TaskRepository taskRepository;
 

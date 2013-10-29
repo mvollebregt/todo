@@ -17,9 +17,14 @@
 			<p>Here is a list of all things to do:</p>
 			<table>
 				<tr wicket:id="list">
-					<td wicket:id="name"/>
+					<td wicket:id="name">Make a todo list</td>
 				</tr>
+				<wicket:remove>
+					<tr><td>Add more todo items</td></tr>
+					<tr><td>Finish this application</td></tr>
+				</wicket:remove>
 			</table>
+			<p wicket:id="navigator"><a href="#">prev</a> <a href="#">next</a> etc</p>
 		</div>
 		<div id="ft">
 		</div>

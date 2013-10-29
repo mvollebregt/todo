@@ -8,6 +8,8 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PageableListView;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
+import org.apache.wicket.model.LoadableDetachableModel;
+import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -20,13 +22,18 @@ public class HomePage extends WebPage {
 	
 	@SpringBean
 	private TaskService taskService;
-
+	
 	public HomePage(final PageParameters parameters) {
 		super(parameters);
 		
-		List<Task> list = taskService.list();
+		LoadableDetachableModel<List<Task>> listModel = new LoadableDetachableModel<List<Task>>() {
+			@Override
+			protected List<Task> load() {
+				return taskService.list();
+			}
+		};
 		
-		PageableListView<Task> listView = new PageableListView<Task>("list", list, 2) {
+		PageableListView<Task> listView = new PageableListView<Task>("list", listModel, 2) {
 			@Override
 			protected void populateItem(ListItem<Task> item) {
 				final Task task = item.getModelObject();
@@ -35,7 +42,7 @@ public class HomePage extends WebPage {
 					public void onClick() {
 						setResponsePage(new EditTaskPage(task));
 					}
-				}.add(new Label("description", task.getDescription())));
+				}.add(new Label("description", new PropertyModel<>(task, "description"))));
 			}
 		};
 		

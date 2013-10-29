@@ -5,7 +5,7 @@ import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
-import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import com.github.mvollebregt.todo.model.Task;
@@ -19,9 +19,9 @@ public class EditTaskPage extends WebPage {
 
 	public EditTaskPage(final Task task) {
 		add(new FeedbackPanel("feedback"));
-		Form<Task> form = new Form<>("form");
+		Form<Task> form = new Form<>("form", new CompoundPropertyModel<Task>(task));
 		add(form);
-		form.add(new TextField<Task>("description", new PropertyModel<Task>(task, "description")).setRequired(true));
+		form.add(new TextField<Task>("description").setRequired(true));
 		form.add(new Button("submit") {
 			@Override
 			public void onSubmit() {

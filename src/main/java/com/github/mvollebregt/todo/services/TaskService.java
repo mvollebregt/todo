@@ -19,4 +19,8 @@ public class TaskService {
 		return taskRepository.list();
 	}
 
+	public void save(Task task) {
+		taskRepository.save(task);
+	}
+
 }

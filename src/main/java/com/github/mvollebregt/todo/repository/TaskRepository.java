@@ -27,4 +27,8 @@ public class TaskRepository {
 		return sessionFactory.getCurrentSession().createCriteria(Task.class).list();
 	}
 
+	public void save(Task task) {
+		sessionFactory.getCurrentSession().saveOrUpdate(task);		
+	}
+
 }

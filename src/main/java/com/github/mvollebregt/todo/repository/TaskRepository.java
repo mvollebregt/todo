@@ -31,4 +31,8 @@ public class TaskRepository {
 		sessionFactory.getCurrentSession().saveOrUpdate(task);		
 	}
 
+	public Task fetch(Long id) {
+		return (Task) sessionFactory.getCurrentSession().get(Task.class, id);
+	}
+
 }

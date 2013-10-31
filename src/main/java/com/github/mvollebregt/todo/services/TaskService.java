@@ -22,5 +22,9 @@ public class TaskService {
 	public void save(Task task) {
 		taskRepository.save(task);
 	}
+	
+	public Task fetch(Long id) {
+		return taskRepository.fetch(id);
+	}
 
 }

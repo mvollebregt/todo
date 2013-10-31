@@ -6,6 +6,7 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import com.github.mvollebregt.todo.model.Task;
@@ -18,16 +19,15 @@ public class EditTaskPage extends WebPage {
 	private TaskService taskService;
 
 	public EditTaskPage(final Task task) {
-		// TODO: make task detachable?
-		// TODO: use HibernateObjectModel?
+		final IModel<Task> taskModel = new TaskModel(taskService, task);
 		add(new FeedbackPanel("feedback"));
-		Form<Task> form = new Form<>("form", new CompoundPropertyModel<Task>(task));
+		Form<Task> form = new Form<>("form", new CompoundPropertyModel<>(taskModel));
 		add(form);
 		form.add(new TextField<Task>("description").setRequired(true));
 		form.add(new Button("submit") {
 			@Override
 			public void onSubmit() {
-				taskService.save(task);
+				taskService.save(taskModel.getObject());
 				info("Task was saved");
 			}
 		});
